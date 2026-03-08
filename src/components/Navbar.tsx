@@ -9,6 +9,9 @@ const navItems = [
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+  { label: "Case Studies", href: "#case-studies" },
+  { label: "Testimonials", href: "#testimonials" },
+  { label: "Hire Me", href: "#hire-me" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -34,18 +37,18 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between h-16 px-6">
         <a href="#home" className="font-display text-xl font-bold">
           <span className="text-foreground">Usman</span>{" "}
-          <span className="gradient-text">Ghias</span>
+          <span className="gradient-text">Khan</span>
         </a>
 
         {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-6">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} className="nav-link">
+            <a key={item.href} href={item.href} className="nav-link text-xs">
               {item.label}
             </a>
           ))}
           <a
-            href="#contact"
+            href="#hire-me"
             className="px-5 py-2 text-sm font-semibold rounded-full bg-primary text-primary-foreground hover:opacity-90 transition-opacity"
           >
             Hire Me
@@ -53,7 +56,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button className="lg:hidden text-foreground" onClick={() => setMobileOpen(!mobileOpen)}>
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -65,14 +68,14 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
+            className="lg:hidden bg-background/95 backdrop-blur-xl border-b border-border/50"
           >
-            <div className="flex flex-col items-center gap-4 py-6">
+            <div className="flex flex-col items-center gap-3 py-6">
               {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}
-                  className="nav-link text-lg"
+                  className="nav-link text-base"
                   onClick={() => setMobileOpen(false)}
                 >
                   {item.label}

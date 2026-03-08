@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Phone, MapPin, Github, Linkedin, Twitter, Youtube, ExternalLink } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -9,8 +9,9 @@ const ContactSection = () => {
   const socials = [
     { icon: Github, label: "GitHub", href: "https://github.com/UsmanGhias", username: "@UsmanGhias" },
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/in/m-usmanghias", username: "14K+ Connections" },
-    { icon: Twitter, label: "X (Twitter)", href: "https://twitter.com/usmanghias467", username: "@usmanghias467" },
-    { icon: Youtube, label: "YouTube", href: "https://youtube.com/@codcrafters", username: "@codcrafters" },
+    { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/musmanghias/", username: "@musmanghias" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/usmanghias467/", username: "@usmanghias467" },
+    { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@codcrafters", username: "@codcrafters" },
     { icon: ExternalLink, label: "Upwork", href: "https://www.upwork.com/freelancers/usmanghias", username: "Top Rated" },
   ];
 
@@ -38,7 +39,7 @@ const ContactSection = () => {
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2 }}
-            className="space-y-6"
+            className="space-y-5"
           >
             {[
               { icon: Mail, label: "Email", value: "iusmanghias@gmail.com", href: "mailto:iusmanghias@gmail.com" },
@@ -63,7 +64,7 @@ const ContactSection = () => {
               </motion.a>
             ))}
 
-            {/* CTA */}
+            {/* WhatsApp CTA */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -78,8 +79,34 @@ const ContactSection = () => {
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all"
                 style={{ background: "#25D366", color: "#fff" }}
               >
-                💬 Chat on WhatsApp
+                <MessageCircle size={16} /> Chat on WhatsApp
               </a>
+            </motion.div>
+
+            {/* Quick Quote */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.7 }}
+              className="glass-card p-5"
+            >
+              <h4 className="font-display font-bold text-foreground text-sm mb-3">Quick Project Inquiry</h4>
+              <div className="flex flex-wrap gap-2 mb-3">
+                {["Full Stack Web App", "Mobile App", "Odoo ERP", "AI/ML Solution", "Blockchain", "Technical Consulting"].map((type) => (
+                  <a
+                    key={type}
+                    href={`https://wa.link/8soaqu`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="skill-badge text-[10px] cursor-pointer hover:bg-primary/15"
+                  >
+                    {type}
+                  </a>
+                ))}
+              </div>
+              <p className="text-[10px] text-muted-foreground">
+                Budget ranges: Under $1K • $1K-$3K • $3K-$8K • $8K-$15K • $15K-$25K • $25K+
+              </p>
             </motion.div>
           </motion.div>
 
@@ -99,7 +126,7 @@ const ContactSection = () => {
                 rel="noopener noreferrer"
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: 0.4 + i * 0.08 }}
+                transition={{ delay: 0.4 + i * 0.06 }}
                 className="glass-card-hover p-4 flex items-center justify-between group block"
               >
                 <div className="flex items-center gap-3">
@@ -113,7 +140,7 @@ const ContactSection = () => {
               </motion.a>
             ))}
 
-            {/* Visit site */}
+            {/* CODCrafters */}
             <motion.a
               href="https://codcrafters.org"
               target="_blank"
