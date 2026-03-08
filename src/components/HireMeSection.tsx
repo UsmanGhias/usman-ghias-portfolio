@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Users, Heart, TrendingUp, Star, CheckCircle, Timer, ArrowRight, Sparkles } from "lucide-react";
+import { Users, Heart, TrendingUp, Star, CheckCircle, Timer, ArrowRight } from "lucide-react";
 
 const partnershipModels = [
   {
@@ -56,8 +56,8 @@ const HireMeSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="hire-me" className="py-28 relative aurora-bg" ref={ref}>
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="hire-me" className="py-24 relative" ref={ref}>
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -78,11 +78,11 @@ const HireMeSection = () => {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ delay: 0.2 }}
-          className="max-w-2xl mx-auto mb-16 glass-card p-8 text-center"
-          style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.08))" }}
+          className="max-w-2xl mx-auto mb-16 p-6 rounded-2xl text-center"
+          style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.15), hsl(var(--accent) / 0.15))" }}
         >
           <div className="flex items-center justify-center gap-2 mb-2">
-            <Sparkles size={20} style={{ color: "hsl(var(--primary))" }} />
+            <Heart size={20} className="text-primary" />
             <span className="text-lg font-display font-bold text-foreground">Ready to Make an Impact</span>
           </div>
           <p className="text-sm text-muted-foreground">
@@ -98,12 +98,11 @@ const HireMeSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.3 + i * 0.1 }}
-              whileHover={{ y: -6 }}
               className="glass-card-hover p-6"
             >
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "hsl(var(--primary) / 0.1)" }}>
-                  <Users size={20} style={{ color: "hsl(var(--primary))" }} />
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <Users size={20} className="text-primary" />
                 </div>
                 <div>
                   <h4 className="font-display font-bold text-foreground">{model.title}</h4>
@@ -114,7 +113,7 @@ const HireMeSection = () => {
               <div className="space-y-1 mb-4">
                 {model.features.map((f) => (
                   <p key={f} className="text-xs text-muted-foreground flex items-center gap-2">
-                    <CheckCircle size={10} className="flex-shrink-0" style={{ color: "hsl(var(--primary))" }} /> {f}
+                    <CheckCircle size={10} className="text-primary flex-shrink-0" /> {f}
                   </p>
                 ))}
               </div>
@@ -130,21 +129,19 @@ const HireMeSection = () => {
                 </div>
               </div>
 
-              <div className="p-3 rounded-xl border flex items-center gap-2" style={{ background: "hsl(var(--primary) / 0.05)", borderColor: "hsl(var(--primary) / 0.1)" }}>
-                <Star size={14} style={{ color: "hsl(var(--primary))" }} />
-                <span className="text-xs font-medium" style={{ color: "hsl(var(--primary))" }}>{model.impact}</span>
+              <div className="p-3 rounded-xl bg-primary/5 border border-primary/10 flex items-center gap-2">
+                <Star size={14} className="text-primary" />
+                <span className="text-xs font-medium text-primary">{model.impact}</span>
               </div>
 
-              <motion.a
+              <a
                 href="https://wa.link/8soaqu"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-                className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-shadow"
+                className="mt-4 w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all"
               >
                 Get My Resume <ArrowRight size={14} />
-              </motion.a>
+              </a>
             </motion.div>
           ))}
         </div>
@@ -159,11 +156,10 @@ const HireMeSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.6 + i * 0.1 }}
-                whileHover={{ y: -6 }}
-                className="text-center cursor-default"
+                className="text-center"
               >
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-3" style={{ background: "hsl(var(--primary) / 0.1)" }}>
-                  <b.icon size={24} style={{ color: "hsl(var(--primary))" }} />
+                <div className="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-3">
+                  <b.icon size={24} className="text-primary" />
                 </div>
                 <h4 className="font-semibold text-sm text-foreground">{b.title}</h4>
                 <p className="text-xs text-muted-foreground mt-1">{b.desc}</p>
@@ -176,22 +172,15 @@ const HireMeSection = () => {
         <div className="mb-16">
           <h3 className="text-xl font-display font-bold text-center mb-10">My Career Goals</h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {careerGoals.map((g, i) => (
-              <motion.div
-                key={g.step}
-                initial={{ opacity: 0, y: 20 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: 0.8 + i * 0.1 }}
-                whileHover={{ y: -4 }}
-                className="text-center cursor-default"
-              >
-                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-sm"
-                  style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))", color: "hsl(var(--primary-foreground))" }}>
+            {careerGoals.map((g) => (
+              <div key={g.step} className="text-center">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-3 font-bold text-primary-foreground text-sm"
+                  style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))" }}>
                   {g.step}
                 </div>
                 <h4 className="font-semibold text-sm text-foreground">{g.title}</h4>
                 <p className="text-xs text-muted-foreground mt-1">{g.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -201,34 +190,22 @@ const HireMeSection = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.8 }}
-          className="glass-card p-10 text-center"
-          style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.06), hsl(var(--accent) / 0.06))" }}
+          className="glass-card p-8 text-center"
+          style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05))" }}
         >
           <h3 className="text-xl font-display font-bold mb-3">Ready to Hire Me?</h3>
           <p className="text-sm text-muted-foreground mb-6 max-w-xl mx-auto">
             Let's discuss how I can contribute to your team's success. I'm excited to bring my skills, experience, and passion to your next big project.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <motion.a
-              href="https://wa.link/8soaqu"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-shadow flex items-center justify-center gap-2"
-            >
+            <a href="https://wa.link/8soaqu" target="_blank" rel="noopener noreferrer"
+              className="px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-all flex items-center justify-center gap-2">
               Schedule Interview <ArrowRight size={14} />
-            </motion.a>
-            <motion.a
-              href="https://wa.link/8soaqu"
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.98 }}
-              className="px-8 py-3 rounded-full border border-border text-foreground font-semibold text-sm hover:border-primary/30 hover:bg-primary/5 transition-all"
-            >
+            </a>
+            <a href="https://wa.link/8soaqu" target="_blank" rel="noopener noreferrer"
+              className="px-8 py-3 rounded-full border border-border text-foreground font-semibold text-sm hover:border-primary/30 hover:bg-primary/5 transition-all">
               Request Resume
-            </motion.a>
+            </a>
           </div>
         </motion.div>
       </div>

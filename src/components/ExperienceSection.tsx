@@ -207,7 +207,7 @@ const ExperienceSection = () => {
   const visibleExperiences = showAll ? experiences : experiences.slice(0, 5);
 
   return (
-    <section id="experience" className="py-28 relative" ref={ref}>
+    <section id="experience" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -222,51 +222,49 @@ const ExperienceSection = () => {
         </motion.div>
 
         {/* Tab switcher */}
-        <div className="flex justify-center gap-2 mb-14">
+        <div className="flex justify-center gap-2 mb-12">
           {(["experience", "education"] as const).map((tab) => (
-            <motion.button
+            <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
               className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 capitalize ${
                 activeTab === tab
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
-                  : "bg-secondary/50 text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground"
+                  : "bg-secondary text-muted-foreground hover:text-foreground"
               }`}
             >
               {tab === "experience" ? <Briefcase className="inline mr-2" size={14} /> : <GraduationCap className="inline mr-2" size={14} />}
               {tab}
-            </motion.button>
+            </button>
           ))}
         </div>
 
         {activeTab === "experience" ? (
           <>
             <div className="relative max-w-3xl mx-auto">
-              <div className="absolute left-6 top-0 bottom-0 w-px" style={{ background: "linear-gradient(to bottom, hsl(var(--primary) / 0.3), hsl(var(--border)), transparent)" }} />
+              <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
 
               {visibleExperiences.map((exp, i) => (
                 <motion.div
                   key={exp.company + exp.position}
                   initial={{ opacity: 0, x: -30 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: i * 0.08 }}
+                  transition={{ delay: i * 0.1 }}
                   className="relative pl-16 pb-10 last:pb-0"
                 >
                   <div className={`absolute left-4 top-1 w-5 h-5 rounded-full border-2 ${
-                    exp.current ? "border-primary" : "border-border bg-card"
-                  }`} style={exp.current ? { background: "hsl(var(--primary) / 0.2)" } : {}}>
-                    {exp.current && <span className="absolute inset-0 rounded-full animate-ping" style={{ background: "hsl(var(--primary) / 0.3)" }} />}
+                    exp.current ? "border-primary bg-primary/20" : "border-border bg-card"
+                  }`}>
+                    {exp.current && <span className="absolute inset-0 rounded-full bg-primary/40 animate-ping" />}
                   </div>
 
-                  <motion.div whileHover={{ x: 4 }} className="glass-card-hover p-6">
+                  <div className="glass-card-hover p-6">
                     <div className="flex flex-wrap items-center gap-2 mb-2">
                       <h4 className="text-lg font-display font-bold text-foreground">{exp.position}</h4>
                       {exp.current && (
-                        <span className="px-2 py-0.5 text-xs rounded-full border" style={{ background: "hsl(var(--primary) / 0.1)", color: "hsl(var(--primary))", borderColor: "hsl(var(--primary) / 0.2)" }}>Current</span>
+                        <span className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">Current</span>
                       )}
-                      <span className="px-2 py-0.5 text-[10px] rounded-full border" style={{ background: "hsl(var(--accent) / 0.1)", color: "hsl(var(--accent))", borderColor: "hsl(var(--accent) / 0.2)" }}>{exp.type}</span>
+                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-accent/10 text-accent border border-accent/20">{exp.type}</span>
                     </div>
                     <div className="flex flex-wrap items-center gap-4 mb-3 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1"><Briefcase size={14} /> {exp.company}</span>
@@ -277,7 +275,7 @@ const ExperienceSection = () => {
                     <ul className="text-xs text-muted-foreground mb-3 space-y-1">
                       {exp.achievements.map((a) => (
                         <li key={a} className="flex items-start gap-2">
-                          <span style={{ color: "hsl(var(--primary))" }} className="mt-0.5">▸</span> {a}
+                          <span className="text-primary mt-0.5">▸</span> {a}
                         </li>
                       ))}
                     </ul>
@@ -286,22 +284,20 @@ const ExperienceSection = () => {
                         <span key={tag} className="skill-badge text-[10px]">{tag}</span>
                       ))}
                     </div>
-                  </motion.div>
+                  </div>
                 </motion.div>
               ))}
             </div>
 
             {experiences.length > 5 && (
               <div className="text-center mt-8">
-                <motion.button
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
+                <button
                   onClick={() => setShowAll(!showAll)}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border/50 text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
                 >
                   {showAll ? "Show Less" : `Show All (${experiences.length})`}
                   {showAll ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
-                </motion.button>
+                </button>
               </div>
             )}
           </>
@@ -313,19 +309,18 @@ const ExperienceSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.15 }}
-                whileHover={{ y: -4 }}
                 className="glass-card-hover p-6"
               >
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "hsl(var(--accent) / 0.1)" }}>
-                    <GraduationCap size={22} style={{ color: "hsl(var(--accent))" }} />
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
+                    <GraduationCap size={22} className="text-accent" />
                   </div>
                   <div>
                     <h4 className="text-lg font-display font-bold text-foreground">{edu.degree}</h4>
                     <p className="text-sm text-muted-foreground">{edu.institution}</p>
                   </div>
                   {edu.current && (
-                    <span className="ml-auto px-2 py-0.5 text-xs rounded-full border" style={{ background: "hsl(var(--primary) / 0.1)", color: "hsl(var(--primary))", borderColor: "hsl(var(--primary) / 0.2)" }}>Current</span>
+                    <span className="ml-auto px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">Current</span>
                   )}
                 </div>
                 <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">
@@ -335,7 +330,7 @@ const ExperienceSection = () => {
                 <ul className="text-xs text-muted-foreground mb-3 space-y-1">
                   {edu.achievements.map((a) => (
                     <li key={a} className="flex items-start gap-2">
-                      <span style={{ color: "hsl(var(--accent))" }} className="mt-0.5">▸</span> {a}
+                      <span className="text-accent mt-0.5">▸</span> {a}
                     </li>
                   ))}
                 </ul>

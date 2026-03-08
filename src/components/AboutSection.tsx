@@ -1,16 +1,17 @@
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { MapPin, Phone, Mail, GraduationCap, Building2, Award, Code, Coffee, Globe, Brain, Download } from "lucide-react";
+import { MapPin, Phone, Mail, GraduationCap, Building2, Award, Code, Coffee, Globe, Brain } from "lucide-react";
 
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const highlights = [
-    { icon: GraduationCap, label: "MSSE @Quantic", sub: "Washington D.C., USA", color: "primary" },
-    { icon: GraduationCap, label: "BS PUCIT", sub: "Software Engineering", color: "accent" },
-    { icon: Building2, label: "CEO @CODCrafters", sub: "Tech Startup", color: "primary" },
-    { icon: Award, label: "Top Rated Upwork", sub: "100% Job Success", color: "accent" },
+    { icon: GraduationCap, label: "MSSE @Quantic", sub: "Washington D.C., USA" },
+    { icon: GraduationCap, label: "BS PUCIT", sub: "Software Engineering" },
+    { icon: Building2, label: "CEO @CODCrafters", sub: "Tech Startup" },
+    { icon: Award, label: "Top Rated Upwork", sub: "100% Job Success" },
   ];
 
   const expertiseAreas = [
@@ -21,8 +22,8 @@ const AboutSection = () => {
   ];
 
   return (
-    <section id="about" className="py-28 relative aurora-bg" ref={ref}>
-      <div className="container mx-auto px-6 relative z-10">
+    <section id="about" className="py-24 relative" ref={ref}>
+      <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -35,7 +36,7 @@ const AboutSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-12">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -62,18 +63,11 @@ const AboutSection = () => {
 
             {/* Expertise badges */}
             <div className="flex flex-wrap gap-3 mb-6">
-              {expertiseAreas.map((area, i) => (
-                <motion.div
-                  key={area.label}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.4 + i * 0.08 }}
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  className="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary/5 border border-primary/10 cursor-default"
-                >
+              {expertiseAreas.map((area) => (
+                <div key={area.label} className="flex items-center gap-2 px-3 py-2 rounded-xl bg-primary/5 border border-primary/10">
                   <area.icon size={14} className="text-primary" />
                   <span className="text-xs font-medium text-foreground">{area.label}</span>
-                </motion.div>
+                </div>
               ))}
             </div>
 
@@ -91,26 +85,22 @@ const AboutSection = () => {
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <motion.a
+              <a
                 href="https://www.upwork.com/freelancers/usmanghias"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-shadow"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity"
               >
                 View Upwork Profile
-              </motion.a>
-              <motion.a
+              </a>
+              <a
                 href="https://codcrafters.org"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-border text-foreground font-semibold text-sm hover:border-primary/30 hover:bg-primary/5 transition-all"
               >
-                <Download size={14} /> Get Resume
-              </motion.a>
+                Visit CODCrafters
+              </a>
             </div>
           </motion.div>
 
@@ -126,11 +116,10 @@ const AboutSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.5 + i * 0.1 }}
-                whileHover={{ scale: 1.02, x: 4 }}
                 className="glass-card-hover p-5 flex items-center gap-4"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: `hsl(var(--${item.color}) / 0.1)` }}>
-                  <item.icon size={22} style={{ color: `hsl(var(--${item.color}))` }} />
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                  <item.icon size={22} className="text-primary" />
                 </div>
                 <div>
                   <p className="font-semibold text-foreground">{item.label}</p>
@@ -150,18 +139,11 @@ const AboutSection = () => {
                 { val: "100%", label: "Job Success Rate" },
                 { val: "25+", label: "Financial Systems" },
                 { val: "40+", label: "Accounting Clients" },
-              ].map((s, i) => (
-                <motion.div
-                  key={s.label}
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={isInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ delay: 0.6 + i * 0.05 }}
-                  whileHover={{ scale: 1.05 }}
-                  className="glass-card p-4 text-center cursor-default"
-                >
+              ].map((s) => (
+                <div key={s.label} className="glass-card p-4 text-center">
                   <p className="text-2xl font-bold gradient-text font-display">{s.val}</p>
                   <p className="text-xs text-muted-foreground mt-1">{s.label}</p>
-                </motion.div>
+                </div>
               ))}
             </div>
           </motion.div>
