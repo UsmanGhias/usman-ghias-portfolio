@@ -21,12 +21,13 @@ const caseStudies = [
     highlights: [
       "End-to-end patient management with structured profiles",
       "Unified clinical assessment and disease tracking",
+      "Specialized care modules for different departments",
       "Real-time search and filter capabilities",
+      "Comprehensive physician and nursing workflow management",
     ],
     duration: "3-4 months",
     teamSize: "3-4 developers",
     client: "Healthcare Institutions",
-    gradient: "from-primary/10 to-accent/10",
   },
   {
     id: 2,
@@ -47,11 +48,12 @@ const caseStudies = [
       "Efficient vehicle intake with digital check-in",
       "Real-time job card status tracking",
       "Automated invoice generation from completed repairs",
+      "Comprehensive service history for customers",
+      "Standardized quality assurance checklists",
     ],
     duration: "2-3 months",
     teamSize: "2-3 developers",
     client: "Automotive Repair Shops",
-    gradient: "from-accent/10 to-glow-warm/10",
   },
   {
     id: 3,
@@ -72,17 +74,19 @@ const caseStudies = [
       "Seamless booking and reservation system",
       "Real-time room availability tracking",
       "Automated housekeeping workflows",
+      "Integrated billing with multiple payment options",
+      "Guest history and preferences management",
     ],
     duration: "4-5 months",
     teamSize: "3-4 developers",
     client: "Hospitality Industry",
-    gradient: "from-glow-warm/10 to-primary/10",
   },
 ];
 
 const additionalStudies = [
-  { title: "WordPress Portfolio", desc: "Custom themes, plugins, and e-commerce solutions", tech: "WordPress, PHP, MySQL" },
-  { title: "Odoo Projects Portfolio", desc: "90+ Odoo projects across multiple industries", tech: "Odoo, Python, PostgreSQL" },
+  { title: "WordPress Portfolio", desc: "Custom themes, plugins, and e-commerce solutions for multiple clients", tech: "WordPress, PHP, MySQL, JavaScript, CSS" },
+  { title: "Shopify Portfolio", desc: "E-commerce solutions, custom themes, apps & store optimization", tech: "Shopify, Liquid, JavaScript, CSS, API Integration" },
+  { title: "Odoo Projects Portfolio", desc: "90+ Odoo projects across multiple industries and ERP implementations", tech: "Odoo, Python, PostgreSQL, XML, OWL, JavaScript" },
 ];
 
 const CaseStudiesSection = () => {
@@ -168,7 +172,7 @@ const CaseStudiesSection = () => {
         </div>
 
         {/* Additional case studies */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
           {additionalStudies.map((s, i) => (
             <motion.div
               key={s.title}
