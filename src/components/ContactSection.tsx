@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Facebook, Instagram, Youtube, MessageCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Github, Linkedin, ExternalLink, Facebook, Instagram, Youtube, MessageCircle, Send } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -16,29 +16,30 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="contact" className="py-28 relative aurora-bg" ref={ref}>
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <p className="text-primary font-mono text-sm mb-3 tracking-widest uppercase">Contact</p>
           <h2 className="section-heading">
             Let's <span className="gradient-text">Connect</span>
           </h2>
+          <div className="section-divider" />
           <p className="section-subheading mx-auto mt-4">
             Ready to start your next project? Get in touch and let's make it happen.
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 max-w-5xl mx-auto">
           {/* Contact info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="space-y-5"
           >
             {[
@@ -52,14 +53,15 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3 + i * 0.1 }}
-                className="glass-card-hover p-5 flex items-center gap-4 block"
+                whileHover={{ x: 8 }}
+                className="glass-card-premium p-6 flex items-center gap-5 block group"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <item.icon size={20} className="text-primary" />
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)] transition-all duration-500">
+                  <item.icon size={22} className="text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground">{item.label}</p>
-                  <p className="font-semibold text-foreground">{item.value}</p>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider font-bold">{item.label}</p>
+                  <p className="font-bold text-foreground text-lg">{item.value}</p>
                 </div>
               </motion.a>
             ))}
@@ -69,17 +71,17 @@ const ContactSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.6 }}
-              className="glass-card p-6 text-center"
+              className="glass-card-premium p-8 text-center"
             >
-              <p className="text-muted-foreground mb-4">Prefer WhatsApp?</p>
+              <p className="text-muted-foreground mb-5 font-medium">Prefer WhatsApp?</p>
               <a
                 href="https://wa.link/8soaqu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-sm transition-all duration-500 hover:shadow-[0_0_30px_rgba(37,211,102,0.3)]"
                 style={{ background: "#25D366", color: "#fff" }}
               >
-                <MessageCircle size={16} /> Chat on WhatsApp
+                <MessageCircle size={18} /> Chat on WhatsApp
               </a>
             </motion.div>
 
@@ -88,23 +90,25 @@ const ContactSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7 }}
-              className="glass-card p-5"
+              className="glass-card-premium p-6"
             >
-              <h4 className="font-display font-bold text-foreground text-sm mb-3">Quick Project Inquiry</h4>
-              <div className="flex flex-wrap gap-2 mb-3">
+              <h4 className="font-display font-bold text-foreground mb-4 flex items-center gap-2">
+                <Send size={16} className="text-primary" /> Quick Project Inquiry
+              </h4>
+              <div className="flex flex-wrap gap-2 mb-4">
                 {["Full Stack Web App", "Mobile App", "Odoo ERP", "AI/ML Solution", "Blockchain", "Technical Consulting"].map((type) => (
                   <a
                     key={type}
                     href={`https://wa.link/8soaqu`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="skill-badge text-[10px] cursor-pointer hover:bg-primary/15"
+                    className="skill-badge text-[11px] cursor-pointer"
                   >
                     {type}
                   </a>
                 ))}
               </div>
-              <p className="text-[10px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 Budget ranges: Under $1K • $1K-$3K • $3K-$8K • $8K-$15K • $15K-$25K • $25K+
               </p>
             </motion.div>
@@ -112,12 +116,12 @@ const ContactSection = () => {
 
           {/* Socials */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 40 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ delay: 0.3 }}
-            className="space-y-4"
+            transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="space-y-5"
           >
-            <h3 className="text-lg font-display font-bold text-foreground mb-4">Find Me Online</h3>
+            <h3 className="text-xl font-display font-bold text-foreground mb-6">Find Me Online</h3>
             {socials.map((social, i) => (
               <motion.a
                 key={social.label}
@@ -127,12 +131,15 @@ const ContactSection = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.4 + i * 0.06 }}
-                className="glass-card-hover p-4 flex items-center justify-between group block"
+                whileHover={{ x: 8 }}
+                className="glass-card-premium p-5 flex items-center justify-between group block"
               >
-                <div className="flex items-center gap-3">
-                  <social.icon size={18} className="text-primary" />
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
+                    <social.icon size={18} className="text-primary" />
+                  </div>
                   <div>
-                    <p className="font-semibold text-sm text-foreground">{social.label}</p>
+                    <p className="font-bold text-foreground">{social.label}</p>
                     <p className="text-xs text-muted-foreground">{social.username}</p>
                   </div>
                 </div>
@@ -148,17 +155,14 @@ const ContactSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8 }}
-              className="glass-card p-6 flex items-center justify-between group block mt-6"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1))",
-                borderColor: "hsl(var(--primary) / 0.2)",
-              }}
+              whileHover={{ scale: 1.02 }}
+              className="glass-card-premium p-8 flex items-center justify-between group block mt-6"
             >
               <div>
-                <p className="font-display font-bold text-foreground">CODCrafters.org</p>
-                <p className="text-sm text-muted-foreground">My tech startup & agency</p>
+                <p className="font-display font-bold text-foreground text-xl">CODCrafters.org</p>
+                <p className="text-sm text-muted-foreground mt-1">My tech startup & agency</p>
               </div>
-              <ExternalLink size={18} className="text-primary" />
+              <ExternalLink size={20} className="text-primary" />
             </motion.a>
           </motion.div>
         </div>
