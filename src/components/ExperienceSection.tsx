@@ -202,7 +202,7 @@ const ExperienceSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [showAll, setShowAll] = useState(false);
-  const [activeTab, setActiveTab<"experience" | "education">("experience");
+  const [activeTab, setActiveTab] = useState<"experience" | "education">("experience");
 
   const visibleExperiences = showAll ? experiences : experiences.slice(0, 5);
 
