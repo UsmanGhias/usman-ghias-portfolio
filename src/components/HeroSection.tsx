@@ -87,7 +87,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 mb-6"
             >
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(142 76% 50%)" }} />
               <span className="text-sm text-muted-foreground">Available for projects</span>
               <span className="skill-badge">Top Rated</span>
             </motion.div>
