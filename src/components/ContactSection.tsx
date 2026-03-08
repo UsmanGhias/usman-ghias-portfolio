@@ -16,7 +16,7 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-24 relative" ref={ref}>
+    <section id="contact" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -52,10 +52,11 @@ const ContactSection = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.3 + i * 0.1 }}
+                whileHover={{ x: 4 }}
                 className="glass-card-hover p-5 flex items-center gap-4 block"
               >
-                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <item.icon size={20} className="text-primary" />
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center" style={{ background: "hsl(var(--primary) / 0.1)" }}>
+                  <item.icon size={20} style={{ color: "hsl(var(--primary))" }} />
                 </div>
                 <div>
                   <p className="text-xs text-muted-foreground">{item.label}</p>
@@ -72,15 +73,17 @@ const ContactSection = () => {
               className="glass-card p-6 text-center"
             >
               <p className="text-muted-foreground mb-4">Prefer WhatsApp?</p>
-              <a
+              <motion.a
                 href="https://wa.link/8soaqu"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all"
-                style={{ background: "#25D366", color: "#fff" }}
+                whileHover={{ scale: 1.04 }}
+                whileTap={{ scale: 0.98 }}
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-semibold text-sm transition-all hover:shadow-lg"
+                style={{ background: "hsl(142 76% 40%)", color: "#fff" }}
               >
                 <MessageCircle size={16} /> Chat on WhatsApp
-              </a>
+              </motion.a>
             </motion.div>
 
             {/* Quick Quote */}
@@ -95,10 +98,10 @@ const ContactSection = () => {
                 {["Full Stack Web App", "Mobile App", "Odoo ERP", "AI/ML Solution", "Blockchain", "Technical Consulting"].map((type) => (
                   <a
                     key={type}
-                    href={`https://wa.link/8soaqu`}
+                    href="https://wa.link/8soaqu"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="skill-badge text-[10px] cursor-pointer hover:bg-primary/15"
+                    className="skill-badge text-[10px] cursor-pointer"
                   >
                     {type}
                   </a>
@@ -127,10 +130,11 @@ const ContactSection = () => {
                 initial={{ opacity: 0, x: 20 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ delay: 0.4 + i * 0.06 }}
+                whileHover={{ x: 4 }}
                 className="glass-card-hover p-4 flex items-center justify-between group block"
               >
                 <div className="flex items-center gap-3">
-                  <social.icon size={18} className="text-primary" />
+                  <social.icon size={18} style={{ color: "hsl(var(--primary))" }} />
                   <div>
                     <p className="font-semibold text-sm text-foreground">{social.label}</p>
                     <p className="text-xs text-muted-foreground">{social.username}</p>
@@ -148,9 +152,10 @@ const ContactSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.8 }}
+              whileHover={{ scale: 1.02 }}
               className="glass-card p-6 flex items-center justify-between group block mt-6"
               style={{
-                background: "linear-gradient(135deg, hsl(var(--primary) / 0.1), hsl(var(--accent) / 0.1))",
+                background: "linear-gradient(135deg, hsl(var(--primary) / 0.08), hsl(var(--accent) / 0.08))",
                 borderColor: "hsl(var(--primary) / 0.2)",
               }}
             >
@@ -158,7 +163,7 @@ const ContactSection = () => {
                 <p className="font-display font-bold text-foreground">CODCrafters.org</p>
                 <p className="text-sm text-muted-foreground">My tech startup & agency</p>
               </div>
-              <ExternalLink size={18} className="text-primary" />
+              <ExternalLink size={18} style={{ color: "hsl(var(--primary))" }} />
             </motion.a>
           </motion.div>
         </div>

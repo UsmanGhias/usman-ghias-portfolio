@@ -2,9 +2,8 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   Code2, Server, Smartphone, ShoppingCart, Globe, Brain,
-  Link2, Shield, Coins, Image, Bot, Layers, Database,
-  Cloud, Plug, Palette, BarChart3, Calculator, FileText,
-  Receipt, Building, TrendingUp, Users, Zap
+  Shield, FileText, Receipt, Building, TrendingUp, Users, Zap,
+  BarChart3, Calculator, Cloud, Plug, Palette
 } from "lucide-react";
 
 const services = [
@@ -53,7 +52,7 @@ const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 relative" ref={ref}>
+    <section id="services" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -72,12 +71,19 @@ const ServicesSection = () => {
 
         {/* Stats Row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
-          {stats.map((stat) => (
-            <div key={stat.label} className="glass-card p-5 text-center">
-              <stat.icon className="w-7 h-7 text-primary mx-auto mb-2" />
+          {stats.map((stat, i) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.1 + i * 0.08 }}
+              whileHover={{ scale: 1.05, y: -4 }}
+              className="glass-card p-5 text-center cursor-default"
+            >
+              <stat.icon className="w-7 h-7 mx-auto mb-2" style={{ color: "hsl(var(--primary))" }} />
               <div className="text-2xl font-bold gradient-text font-display">{stat.value}</div>
               <div className="text-xs text-muted-foreground">{stat.label}</div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -89,7 +95,7 @@ const ServicesSection = () => {
               transition={{ delay: ci * 0.15 }}
               className="text-xl font-display font-bold mb-8 flex items-center gap-3"
             >
-              <span className="w-8 h-0.5 bg-primary rounded-full" />
+              <span className="w-10 h-0.5 rounded-full" style={{ background: "linear-gradient(90deg, hsl(var(--primary)), transparent)" }} />
               {category.category}
             </motion.h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -98,13 +104,14 @@ const ServicesSection = () => {
                   key={service.title}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ delay: ci * 0.15 + i * 0.06 }}
+                  transition={{ delay: ci * 0.1 + i * 0.05 }}
+                  whileHover={{ y: -6 }}
                   className="glass-card-hover p-6 group"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                    <service.icon size={20} className="text-primary" />
+                  <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 transition-all duration-300" style={{ background: "hsl(var(--primary) / 0.1)" }}>
+                    <service.icon size={20} className="group-hover:scale-110 transition-transform" style={{ color: "hsl(var(--primary))" }} />
                   </div>
-                  <h4 className="text-lg font-display font-semibold mb-2 text-foreground">{service.title}</h4>
+                  <h4 className="text-lg font-display font-semibold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">{service.title}</h4>
                   <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{service.desc}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {service.tags.map((tag) => (
@@ -118,15 +125,26 @@ const ServicesSection = () => {
         ))}
 
         {/* CTA */}
-        <div className="text-center glass-card p-8" style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05))" }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6 }}
+          className="text-center glass-card p-10"
+          style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.06), hsl(var(--accent) / 0.06))" }}
+        >
           <h3 className="text-xl font-display font-bold mb-3">Ready to Get Started?</h3>
           <p className="text-sm text-muted-foreground mb-6 max-w-xl mx-auto">
             Let's discuss your project requirements and find the perfect solution for your business needs.
           </p>
-          <a href="#contact" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity">
+          <motion.a
+            href="#contact"
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.98 }}
+            className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:shadow-lg hover:shadow-primary/25 transition-shadow"
+          >
             Get Free Consultation <Users size={16} />
-          </a>
-        </div>
+          </motion.a>
+        </motion.div>
       </div>
     </section>
   );
