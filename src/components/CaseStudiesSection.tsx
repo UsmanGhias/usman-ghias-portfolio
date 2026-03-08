@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { FileText, Calendar, Users, Building, CheckCircle } from "lucide-react";
+import { FileText, Calendar, Users, Building, CheckCircle, ArrowRight } from "lucide-react";
 
 const caseStudies = [
   {
@@ -26,6 +26,7 @@ const caseStudies = [
     duration: "3-4 months",
     teamSize: "3-4 developers",
     client: "Healthcare Institutions",
+    gradient: "from-primary/10 to-accent/10",
   },
   {
     id: 2,
@@ -50,6 +51,7 @@ const caseStudies = [
     duration: "2-3 months",
     teamSize: "2-3 developers",
     client: "Automotive Repair Shops",
+    gradient: "from-accent/10 to-glow-warm/10",
   },
   {
     id: 3,
@@ -74,6 +76,7 @@ const caseStudies = [
     duration: "4-5 months",
     teamSize: "3-4 developers",
     client: "Hospitality Industry",
+    gradient: "from-glow-warm/10 to-primary/10",
   },
 ];
 
@@ -87,73 +90,75 @@ const CaseStudiesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="case-studies" className="py-24 relative" ref={ref}>
+    <section id="case-studies" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
           <p className="text-primary font-mono text-sm mb-3 tracking-widest uppercase">Case Studies</p>
           <h2 className="section-heading">
             Detailed <span className="gradient-text">Projects</span>
           </h2>
+          <div className="section-divider" />
           <p className="section-subheading mx-auto mt-4">
             Comprehensive solutions for healthcare, automotive, and hospitality sectors
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
           {caseStudies.map((study, i) => (
             <motion.div
               key={study.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: i * 0.15 }}
-              className="glass-card-hover p-6 flex flex-col"
+              transition={{ delay: i * 0.15, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ y: -10 }}
+              className="glass-card-premium p-8 flex flex-col group"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <FileText size={20} className="text-primary" />
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center group-hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)] transition-all duration-500">
+                  <FileText size={24} className="text-primary" />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-foreground text-lg">{study.title}</h4>
-                  <p className="text-xs text-primary">{study.subtitle}</p>
+                  <h4 className="font-display font-bold text-foreground text-xl">{study.title}</h4>
+                  <p className="text-xs text-primary font-medium">{study.subtitle}</p>
                 </div>
               </div>
 
-              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{study.description}</p>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-6">{study.description}</p>
 
-              <div className="flex items-center gap-4 mb-4 text-xs text-muted-foreground">
-                <span className="flex items-center gap-1"><Calendar size={12} /> {study.duration}</span>
-                <span className="flex items-center gap-1"><Users size={12} /> {study.teamSize}</span>
-                <span className="flex items-center gap-1"><Building size={12} /> {study.client}</span>
+              <div className="flex items-center gap-4 mb-6 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5"><Calendar size={12} /> {study.duration}</span>
+                <span className="flex items-center gap-1.5"><Users size={12} /> {study.teamSize}</span>
+                <span className="flex items-center gap-1.5"><Building size={12} /> {study.client}</span>
               </div>
 
-              <div className="mb-4">
-                <p className="text-xs font-semibold text-foreground mb-2">Key Features:</p>
-                <div className="grid grid-cols-2 gap-1">
+              <div className="mb-6">
+                <p className="text-xs font-bold text-foreground mb-3 uppercase tracking-wider">Key Features</p>
+                <div className="grid grid-cols-2 gap-2">
                   {study.features.map((f) => (
-                    <span key={f} className="text-[10px] text-muted-foreground flex items-center gap-1">
-                      <CheckCircle size={8} className="text-primary flex-shrink-0" /> {f}
+                    <span key={f} className="text-[11px] text-muted-foreground flex items-center gap-1.5">
+                      <CheckCircle size={10} className="text-primary flex-shrink-0" /> {f}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="mb-4 flex-1">
-                <p className="text-xs font-semibold text-foreground mb-2">Highlights:</p>
-                <ul className="space-y-1">
+              <div className="mb-6 flex-1">
+                <p className="text-xs font-bold text-foreground mb-3 uppercase tracking-wider">Highlights</p>
+                <ul className="space-y-2">
                   {study.highlights.map((h) => (
-                    <li key={h} className="text-[10px] text-muted-foreground flex items-start gap-1">
-                      <span className="text-accent mt-0.5">▸</span> {h}
+                    <li key={h} className="text-[11px] text-muted-foreground flex items-start gap-2">
+                      <ArrowRight size={10} className="text-accent mt-0.5 flex-shrink-0" /> {h}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border/50">
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-4 border-t border-border/30">
                 {study.technologies.map((tech) => (
                   <span key={tech} className="skill-badge text-[10px]">{tech}</span>
                 ))}
@@ -163,18 +168,19 @@ const CaseStudiesSection = () => {
         </div>
 
         {/* Additional case studies */}
-        <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
           {additionalStudies.map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="glass-card p-4 text-center"
+              whileHover={{ scale: 1.03 }}
+              className="glass-card-premium p-6 text-center cursor-default"
             >
-              <h5 className="font-display font-bold text-sm text-foreground">{s.title}</h5>
-              <p className="text-xs text-muted-foreground mt-1">{s.desc}</p>
-              <p className="text-[10px] text-primary mt-2">{s.tech}</p>
+              <h5 className="font-display font-bold text-foreground">{s.title}</h5>
+              <p className="text-xs text-muted-foreground mt-2">{s.desc}</p>
+              <p className="text-[10px] text-primary mt-3 font-bold">{s.tech}</p>
             </motion.div>
           ))}
         </div>

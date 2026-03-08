@@ -207,29 +207,30 @@ const ExperienceSection = () => {
   const visibleExperiences = showAll ? experiences : experiences.slice(0, 5);
 
   return (
-    <section id="experience" className="py-24 relative" ref={ref}>
+    <section id="experience" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
           <p className="text-primary font-mono text-sm mb-3 tracking-widest uppercase">Career</p>
           <h2 className="section-heading">
             Experience & <span className="gradient-text">Education</span>
           </h2>
+          <div className="section-divider" />
         </motion.div>
 
         {/* Tab switcher */}
-        <div className="flex justify-center gap-2 mb-12">
+        <div className="flex justify-center gap-3 mb-14">
           {(["experience", "education"] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`px-6 py-2.5 rounded-full text-sm font-medium transition-all duration-300 capitalize ${
+              className={`px-8 py-3 rounded-full text-sm font-bold transition-all duration-500 capitalize ${
                 activeTab === tab
-                  ? "bg-primary text-primary-foreground"
+                  ? "bg-primary text-primary-foreground shadow-[0_0_25px_hsl(var(--primary)/0.25)]"
                   : "bg-secondary text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -241,15 +242,15 @@ const ExperienceSection = () => {
 
         {activeTab === "experience" ? (
           <>
-            <div className="relative max-w-3xl mx-auto">
-              <div className="absolute left-6 top-0 bottom-0 w-px bg-border" />
+            <div className="relative max-w-4xl mx-auto">
+              <div className="absolute left-6 top-0 bottom-0 w-px" style={{ background: "linear-gradient(180deg, hsl(var(--primary)/0.5), hsl(var(--border)), hsl(var(--accent)/0.5))" }} />
 
               {visibleExperiences.map((exp, i) => (
                 <motion.div
                   key={exp.company + exp.position}
-                  initial={{ opacity: 0, x: -30 }}
+                  initial={{ opacity: 0, x: -40 }}
                   animate={isInView ? { opacity: 1, x: 0 } : {}}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                   className="relative pl-16 pb-10 last:pb-0"
                 >
                   <div className={`absolute left-4 top-1 w-5 h-5 rounded-full border-2 ${
@@ -258,24 +259,24 @@ const ExperienceSection = () => {
                     {exp.current && <span className="absolute inset-0 rounded-full bg-primary/40 animate-ping" />}
                   </div>
 
-                  <div className="glass-card-hover p-6">
-                    <div className="flex flex-wrap items-center gap-2 mb-2">
-                      <h4 className="text-lg font-display font-bold text-foreground">{exp.position}</h4>
+                  <motion.div whileHover={{ x: 8 }} className="glass-card-premium p-7 transition-all duration-500">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <h4 className="text-xl font-display font-bold text-foreground">{exp.position}</h4>
                       {exp.current && (
-                        <span className="px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">Current</span>
+                        <span className="px-2.5 py-0.5 text-xs rounded-full bg-primary/10 text-primary border border-primary/20 font-bold">Current</span>
                       )}
-                      <span className="px-2 py-0.5 text-[10px] rounded-full bg-accent/10 text-accent border border-accent/20">{exp.type}</span>
+                      <span className="px-2.5 py-0.5 text-[10px] rounded-full bg-accent/10 text-accent border border-accent/20 font-bold">{exp.type}</span>
                     </div>
-                    <div className="flex flex-wrap items-center gap-4 mb-3 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1"><Briefcase size={14} /> {exp.company}</span>
-                      <span className="flex items-center gap-1"><Calendar size={14} /> {exp.period}</span>
-                      <span className="flex items-center gap-1"><MapPin size={14} /> {exp.location}</span>
+                    <div className="flex flex-wrap items-center gap-4 mb-4 text-sm text-muted-foreground">
+                      <span className="flex items-center gap-1.5"><Briefcase size={13} /> {exp.company}</span>
+                      <span className="flex items-center gap-1.5"><Calendar size={13} /> {exp.period}</span>
+                      <span className="flex items-center gap-1.5"><MapPin size={13} /> {exp.location}</span>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-3">{exp.desc}</p>
-                    <ul className="text-xs text-muted-foreground mb-3 space-y-1">
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">{exp.desc}</p>
+                    <ul className="text-xs text-muted-foreground mb-4 space-y-1.5">
                       {exp.achievements.map((a) => (
                         <li key={a} className="flex items-start gap-2">
-                          <span className="text-primary mt-0.5">▸</span> {a}
+                          <span className="text-primary mt-0.5 font-bold">▸</span> {a}
                         </li>
                       ))}
                     </ul>
@@ -284,53 +285,54 @@ const ExperienceSection = () => {
                         <span key={tag} className="skill-badge text-[10px]">{tag}</span>
                       ))}
                     </div>
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
 
             {experiences.length > 5 && (
-              <div className="text-center mt-8">
+              <div className="text-center mt-10">
                 <button
                   onClick={() => setShowAll(!showAll)}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full border border-border text-sm font-medium text-muted-foreground hover:text-foreground hover:border-primary/30 transition-all"
+                  className="inline-flex items-center gap-2 px-8 py-3 rounded-full border border-border text-sm font-bold text-muted-foreground hover:text-foreground hover:border-primary/30 hover:shadow-[0_0_20px_hsl(var(--primary)/0.1)] transition-all duration-500"
                 >
-                  {showAll ? "Show Less" : `Show All (${experiences.length})`}
+                  {showAll ? "Show Less" : `Show All ${experiences.length} Roles`}
                   {showAll ? <ChevronUp size={14} /> : <ChevronDown size={14} />}
                 </button>
               </div>
             )}
           </>
         ) : (
-          <div className="max-w-3xl mx-auto space-y-6">
+          <div className="max-w-4xl mx-auto space-y-8">
             {education.map((edu, i) => (
               <motion.div
                 key={edu.institution}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: i * 0.15 }}
-                className="glass-card-hover p-6"
+                whileHover={{ y: -4 }}
+                className="glass-card-premium p-8"
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center">
-                    <GraduationCap size={22} className="text-accent" />
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-2xl bg-accent/10 flex items-center justify-center">
+                    <GraduationCap size={24} className="text-accent" />
                   </div>
-                  <div>
-                    <h4 className="text-lg font-display font-bold text-foreground">{edu.degree}</h4>
+                  <div className="flex-1">
+                    <h4 className="text-xl font-display font-bold text-foreground">{edu.degree}</h4>
                     <p className="text-sm text-muted-foreground">{edu.institution}</p>
                   </div>
                   {edu.current && (
-                    <span className="ml-auto px-2 py-0.5 text-xs rounded-full bg-primary/10 text-primary border border-primary/20">Current</span>
+                    <span className="px-3 py-1 text-xs rounded-full bg-primary/10 text-primary border border-primary/20 font-bold">Current</span>
                   )}
                 </div>
-                <div className="flex items-center gap-4 mb-3 text-sm text-muted-foreground">
-                  <span className="flex items-center gap-1"><Calendar size={14} /> {edu.period}</span>
-                  <span className="flex items-center gap-1"><MapPin size={14} /> {edu.location}</span>
+                <div className="flex items-center gap-4 mb-4 text-sm text-muted-foreground">
+                  <span className="flex items-center gap-1.5"><Calendar size={13} /> {edu.period}</span>
+                  <span className="flex items-center gap-1.5"><MapPin size={13} /> {edu.location}</span>
                 </div>
-                <ul className="text-xs text-muted-foreground mb-3 space-y-1">
+                <ul className="text-sm text-muted-foreground mb-4 space-y-2">
                   {edu.achievements.map((a) => (
                     <li key={a} className="flex items-start gap-2">
-                      <span className="text-accent mt-0.5">▸</span> {a}
+                      <span className="text-accent mt-0.5 font-bold">▸</span> {a}
                     </li>
                   ))}
                 </ul>
