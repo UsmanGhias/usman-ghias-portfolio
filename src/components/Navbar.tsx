@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Zap } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -56,13 +56,18 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between h-18 px-6 py-3">
-        <a href="#home" className="font-display text-xl font-extrabold flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-500 group-hover:shadow-[0_0_20px_hsl(var(--primary)/0.3)]"
+        <a href="#home" className="flex items-center gap-3 group">
+          {/* Monogram Logo */}
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden transition-all duration-500 group-hover:shadow-[0_0_25px_hsl(var(--primary)/0.4)]"
             style={{ background: "linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)))" }}>
-            <Zap size={16} className="text-primary-foreground" />
+            <span className="absolute inset-0 flex items-center justify-center text-primary-foreground font-display font-extrabold text-lg tracking-tighter">
+              MU
+            </span>
           </div>
-          <span className="text-foreground">Usman</span>{" "}
-          <span className="gradient-text">Khan</span>
+          <div className="hidden sm:flex flex-col leading-none">
+            <span className="text-[11px] font-mono text-muted-foreground tracking-widest uppercase">Portfolio</span>
+            <span className="text-sm font-display font-bold text-foreground">Muhammad Usman</span>
+          </div>
         </a>
 
         {/* Desktop */}

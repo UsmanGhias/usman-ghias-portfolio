@@ -76,7 +76,7 @@ const HeroSection = () => {
         />
       ))}
 
-      {/* Orbiting ring decoration */}
+      {/* Orbiting rings */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full border border-border/10 animate-spin-slow pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] rounded-full border border-primary/5 animate-spin-slow pointer-events-none" style={{ animationDirection: "reverse", animationDuration: "30s" }} />
 
@@ -103,7 +103,7 @@ const HeroSection = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-muted-foreground text-lg mb-3 font-light tracking-wide"
+              className="text-muted-foreground text-lg mb-4 font-light tracking-wide"
             >
               Hi there, I'm
             </motion.p>
@@ -112,12 +112,10 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 40 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold font-display mb-5 leading-[0.95] tracking-tight"
+              className="font-bold font-display mb-6 leading-[0.95] tracking-tight"
             >
-              Muhammad{" "}
-              <span className="text-gradient-animate">Usman</span>
-              <br />
-              <span className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl">Khan</span>
+              <span className="block text-4xl sm:text-5xl md:text-6xl text-foreground">Muhammad</span>
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-gradient-animate mt-1">Usman Khan</span>
             </motion.h1>
 
             <motion.div
@@ -221,7 +219,6 @@ const HeroSection = () => {
                   className="w-full h-full object-cover object-top"
                   loading="eager"
                 />
-                {/* Gradient overlays */}
                 <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/60 to-transparent" />
                 <div className="absolute top-0 left-0 right-0 h-20 bg-gradient-to-b from-background/30 to-transparent" />
               </div>
@@ -273,7 +270,7 @@ const HeroSection = () => {
           transition={{ delay: 1.2, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-20"
         >
-          {stats.map((stat, i) => (
+          {stats.map((stat) => (
             <motion.div
               key={stat.label}
               whileHover={{ scale: 1.05, y: -4 }}
