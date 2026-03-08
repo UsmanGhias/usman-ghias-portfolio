@@ -87,7 +87,7 @@ const CaseStudiesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="case-studies" className="py-24 relative" ref={ref}>
+    <section id="case-studies" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -111,15 +111,16 @@ const CaseStudiesSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: i * 0.15 }}
-              className="glass-card-hover p-6 flex flex-col"
+              whileHover={{ y: -8 }}
+              className="glass-card-hover p-6 flex flex-col group"
             >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <FileText size={20} className="text-primary" />
+                <div className="w-11 h-11 rounded-xl flex items-center justify-center" style={{ background: "hsl(var(--primary) / 0.1)" }}>
+                  <FileText size={20} style={{ color: "hsl(var(--primary))" }} />
                 </div>
                 <div>
-                  <h4 className="font-display font-bold text-foreground text-lg">{study.title}</h4>
-                  <p className="text-xs text-primary">{study.subtitle}</p>
+                  <h4 className="font-display font-bold text-foreground text-lg group-hover:text-primary transition-colors">{study.title}</h4>
+                  <p className="text-xs" style={{ color: "hsl(var(--primary))" }}>{study.subtitle}</p>
                 </div>
               </div>
 
@@ -136,7 +137,7 @@ const CaseStudiesSection = () => {
                 <div className="grid grid-cols-2 gap-1">
                   {study.features.map((f) => (
                     <span key={f} className="text-[10px] text-muted-foreground flex items-center gap-1">
-                      <CheckCircle size={8} className="text-primary flex-shrink-0" /> {f}
+                      <CheckCircle size={8} className="flex-shrink-0" style={{ color: "hsl(var(--primary))" }} /> {f}
                     </span>
                   ))}
                 </div>
@@ -147,13 +148,13 @@ const CaseStudiesSection = () => {
                 <ul className="space-y-1">
                   {study.highlights.map((h) => (
                     <li key={h} className="text-[10px] text-muted-foreground flex items-start gap-1">
-                      <span className="text-accent mt-0.5">▸</span> {h}
+                      <span style={{ color: "hsl(var(--accent))" }} className="mt-0.5">▸</span> {h}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border/50">
+              <div className="flex flex-wrap gap-1.5 mt-auto pt-3 border-t border-border/30">
                 {study.technologies.map((tech) => (
                   <span key={tech} className="skill-badge text-[10px]">{tech}</span>
                 ))}
@@ -170,11 +171,12 @@ const CaseStudiesSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="glass-card p-4 text-center"
+              whileHover={{ scale: 1.03 }}
+              className="glass-card p-5 text-center cursor-default"
             >
               <h5 className="font-display font-bold text-sm text-foreground">{s.title}</h5>
               <p className="text-xs text-muted-foreground mt-1">{s.desc}</p>
-              <p className="text-[10px] text-primary mt-2">{s.tech}</p>
+              <p className="text-[10px] mt-2" style={{ color: "hsl(var(--primary))" }}>{s.tech}</p>
             </motion.div>
           ))}
         </div>

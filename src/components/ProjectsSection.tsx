@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { ExternalLink, Github, Search } from "lucide-react";
+import { ExternalLink, Github, Search, Sparkles } from "lucide-react";
 
 const projectCategories = ["All", "Odoo", "Web Apps", "E-commerce", "Blockchain", "Mobile", "AI/ML", "WordPress", "Data Science", "3D Design"];
 
@@ -151,7 +151,7 @@ const ProjectsSection = () => {
   });
 
   return (
-    <section id="projects" className="py-24 relative" ref={ref}>
+    <section id="projects" className="py-28 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -169,7 +169,7 @@ const ProjectsSection = () => {
         </motion.div>
 
         {/* Search */}
-        <div className="max-w-sm mx-auto mb-6">
+        <div className="max-w-md mx-auto mb-6">
           <div className="relative">
             <Search size={14} className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground" />
             <input
@@ -177,7 +177,7 @@ const ProjectsSection = () => {
               placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-full bg-secondary border border-border text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 transition-colors"
+              className="w-full pl-10 pr-4 py-3 rounded-full bg-secondary/50 border border-border/50 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-primary/50 focus:bg-secondary transition-all backdrop-blur-sm"
             />
           </div>
         </div>
@@ -190,21 +190,23 @@ const ProjectsSection = () => {
           className="flex flex-wrap justify-center gap-2 mb-12"
         >
           {projectCategories.map((cat) => (
-            <button
+            <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
                 activeCategory === cat
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20"
+                  : "bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary"
               }`}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map((project, i) => (
             <motion.div
               key={project.title}
@@ -212,23 +214,24 @@ const ProjectsSection = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: Math.min(i * 0.06, 0.5) }}
               layout
-              className="glass-card-hover p-6 flex flex-col"
+              whileHover={{ y: -6 }}
+              className="glass-card-hover p-6 flex flex-col group"
             >
               <div className="flex items-center gap-2 mb-3">
                 {project.featured && (
-                  <span className="px-2 py-0.5 text-[10px] rounded-full bg-accent/10 text-accent border border-accent/20 font-semibold">
-                    ⭐ Featured
+                  <span className="px-2.5 py-0.5 text-[10px] rounded-full bg-accent/10 border border-accent/20 font-semibold flex items-center gap-1" style={{ color: "hsl(var(--accent))" }}>
+                    <Sparkles size={8} /> Featured
                   </span>
                 )}
-                <span className="px-2 py-0.5 text-[10px] rounded-full bg-primary/10 text-primary border border-primary/20">
+                <span className="px-2.5 py-0.5 text-[10px] rounded-full bg-primary/10 border border-primary/20" style={{ color: "hsl(var(--primary))" }}>
                   {project.category}
                 </span>
               </div>
-              <h4 className="text-lg font-display font-bold text-foreground mb-2">{project.title}</h4>
+              <h4 className="text-lg font-display font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">{project.title}</h4>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{project.desc}</p>
               {project.client && (
                 <p className="text-xs text-muted-foreground mb-3">
-                  <span className="text-primary">Client:</span> {project.client}
+                  <span className="text-primary font-medium">Client:</span> {project.client}
                 </p>
               )}
               <div className="flex flex-wrap gap-1.5 mb-4">
@@ -237,16 +240,16 @@ const ProjectsSection = () => {
                 ))}
               </div>
               <div className="flex gap-3 mt-auto pt-3 border-t border-border/30">
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                <span className="text-xs text-muted-foreground flex items-center gap-1 group-hover:text-primary transition-colors">
                   <ExternalLink size={12} /> Live Demo
                 </span>
-                <span className="text-xs text-muted-foreground flex items-center gap-1">
+                <span className="text-xs text-muted-foreground flex items-center gap-1 group-hover:text-primary transition-colors">
                   <Github size={12} /> Source Code
                 </span>
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {filtered.length === 0 && (
           <p className="text-center text-muted-foreground mt-8">No projects found matching your search.</p>

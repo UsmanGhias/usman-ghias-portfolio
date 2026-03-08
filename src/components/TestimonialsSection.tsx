@@ -109,11 +109,11 @@ const satisfactionMetrics = {
 };
 
 const getVerificationIcon = (verified: string) => {
-  if (verified.includes("Google")) return <CheckCircle className="w-3.5 h-3.5 text-blue-400" />;
-  if (verified.includes("LinkedIn")) return <Users className="w-3.5 h-3.5 text-blue-400" />;
-  if (verified.includes("Business")) return <Shield className="w-3.5 h-3.5 text-green-400" />;
-  if (verified.includes("Enterprise")) return <Award className="w-3.5 h-3.5 text-purple-400" />;
-  return <CheckCircle className="w-3.5 h-3.5 text-blue-400" />;
+  if (verified.includes("Google")) return <CheckCircle className="w-3.5 h-3.5" style={{ color: "hsl(210 100% 60%)" }} />;
+  if (verified.includes("LinkedIn")) return <Users className="w-3.5 h-3.5" style={{ color: "hsl(210 100% 60%)" }} />;
+  if (verified.includes("Business")) return <Shield className="w-3.5 h-3.5" style={{ color: "hsl(142 76% 50%)" }} />;
+  if (verified.includes("Enterprise")) return <Award className="w-3.5 h-3.5" style={{ color: "hsl(var(--accent))" }} />;
+  return <CheckCircle className="w-3.5 h-3.5" style={{ color: "hsl(210 100% 60%)" }} />;
 };
 
 const TestimonialsSection = () => {
@@ -131,8 +131,8 @@ const TestimonialsSection = () => {
   }, [isAutoPlaying]);
 
   return (
-    <section id="testimonials" className="py-24 relative" ref={ref}>
-      <div className="container mx-auto px-6">
+    <section id="testimonials" className="py-28 relative aurora-bg" ref={ref}>
+      <div className="container mx-auto px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -149,12 +149,19 @@ const TestimonialsSection = () => {
         </motion.div>
 
         {/* Satisfaction stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
-          {Object.entries(satisfactionMetrics).map(([key, value]) => (
-            <div key={key} className="glass-card p-4 text-center">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-14">
+          {Object.entries(satisfactionMetrics).map(([key, value], i) => (
+            <motion.div
+              key={key}
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.2 + i * 0.08 }}
+              whileHover={{ scale: 1.05 }}
+              className="glass-card p-4 text-center cursor-default"
+            >
               <p className="text-2xl font-bold gradient-text font-display">{value}</p>
               <p className="text-xs text-muted-foreground mt-1 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
@@ -166,49 +173,49 @@ const TestimonialsSection = () => {
         >
           <div className="overflow-hidden rounded-2xl">
             <div
-              className="flex transition-transform duration-500 ease-in-out"
+              className="flex transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {testimonials.map((t) => (
                 <div key={t.id} className="w-full flex-shrink-0 px-2">
-                  <div className="glass-card p-8 border-t-2 border-primary/30">
+                  <div className="glass-card p-8 md:p-10" style={{ borderTop: "2px solid hsl(var(--primary) / 0.3)" }}>
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold gradient-text">
+                        <div className="w-14 h-14 rounded-full flex items-center justify-center text-xl font-bold gradient-text" style={{ background: "hsl(var(--primary) / 0.1)" }}>
                           {t.name.charAt(0)}
                         </div>
                         <div>
                           <h4 className="font-display font-bold text-foreground">{t.name}</h4>
-                          <p className="text-sm text-primary">{t.position}</p>
+                          <p className="text-sm" style={{ color: "hsl(var(--primary))" }}>{t.position}</p>
                           <p className="text-xs text-muted-foreground flex items-center gap-1">
                             <MapPin size={10} /> {t.company}
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary text-xs">
+                      <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/50 text-xs border border-border/30">
                         {getVerificationIcon(t.verified)}
                         <span className="text-muted-foreground">{t.verified}</span>
                       </div>
                     </div>
 
-                    <div className="flex mb-4">
+                    <div className="flex mb-4 gap-0.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`w-4 h-4 ${i < t.rating ? "text-yellow-400 fill-current" : "text-border"}`} />
+                        <Star key={i} className={`w-4 h-4 ${i < t.rating ? "fill-current" : ""}`} style={{ color: i < t.rating ? "hsl(45 93% 50%)" : "hsl(var(--border))" }} />
                       ))}
                     </div>
 
                     <div className="relative mb-6">
-                      <Quote size={24} className="absolute -top-2 -left-1 text-primary/20" />
-                      <blockquote className="text-muted-foreground leading-relaxed pl-6 italic">
+                      <Quote size={28} className="absolute -top-2 -left-1" style={{ color: "hsl(var(--primary) / 0.15)" }} />
+                      <blockquote className="text-muted-foreground leading-relaxed pl-8 italic text-base">
                         "{t.content}"
                       </blockquote>
                     </div>
 
-                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                    <div className="flex items-center justify-between pt-4 border-t border-border/30">
                       <div className="flex gap-6">
                         {Object.entries(t.metrics).map(([key, value]) => (
                           <div key={key} className="text-center">
-                            <p className="text-sm font-bold text-primary">{value}</p>
+                            <p className="text-sm font-bold" style={{ color: "hsl(var(--primary))" }}>{value}</p>
                             <p className="text-[10px] text-muted-foreground capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</p>
                           </div>
                         ))}
@@ -224,27 +231,36 @@ const TestimonialsSection = () => {
             </div>
           </div>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 glass-card p-2.5 hover:border-primary/30 transition-all"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 glass-card p-2.5 hover:border-primary/30 transition-all"
           >
             <ChevronLeft size={18} className="text-muted-foreground" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
             onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 glass-card p-2.5 hover:border-primary/30 transition-all"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 glass-card p-2.5 hover:border-primary/30 transition-all"
           >
             <ChevronRight size={18} className="text-muted-foreground" />
-          </button>
+          </motion.button>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-6">
+        <div className="flex justify-center gap-2 mt-8">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? "bg-primary scale-110" : "bg-border hover:bg-primary/50"}`}
+              className="w-2.5 h-2.5 rounded-full transition-all duration-300"
+              style={{
+                background: i === current ? "hsl(var(--primary))" : "hsl(var(--border))",
+                transform: i === current ? "scale(1.3)" : "scale(1)",
+                boxShadow: i === current ? "0 0 12px hsl(var(--primary) / 0.4)" : "none",
+              }}
             />
           ))}
         </div>
