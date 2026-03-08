@@ -1,7 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { Star, ChevronLeft, ChevronRight, MapPin, CheckCircle, Shield, Award, Users, Quote } from "lucide-react";
-import AnimatedCounter from "./AnimatedCounter";
 
 const testimonials = [
   {
@@ -22,7 +21,7 @@ const testimonials = [
     position: "Team Lead",
     company: "Austria 🇦🇹",
     location: "Austria",
-    content: "Ausgezeichnete Arbeit! The custom Odoo implementation was exactly what we needed for our business. Usman's technical depth and attention to detail made all the difference. Professional, efficient, and truly impactful. We're extremely satisfied with the results!",
+    content: "Ausgezeichnete Arbeit! The custom Odoo implementation was exactly what we needed for our business. Usman's technical depth and attention to detail made all the difference. Professional, efficient, and truly impactful.",
     rating: 5,
     verified: "LinkedIn Verified",
     projectDuration: "5 months",
@@ -58,7 +57,7 @@ const testimonials = [
     position: "Business Owner",
     company: "Kuwait 🇰🇼",
     location: "Kuwait",
-    content: "Usman has exceptional knowledge in Odoo, Accounting, HR, Sales, Inventory, and beyond. He delivered a comprehensive ERP solution that transformed our operations. I highly recommend him to anyone looking for a skilled, reliable Odoo developer who delivers results!",
+    content: "Usman has exceptional knowledge in Odoo, Accounting, HR, Sales, Inventory, and beyond. He delivered a comprehensive ERP solution that transformed our operations. I highly recommend him!",
     rating: 5,
     verified: "Business Verified",
     projectDuration: "8 months",
@@ -70,7 +69,7 @@ const testimonials = [
     position: "Digital Ventures",
     company: "Sweden 🇸🇪",
     location: "Sweden",
-    content: "Working with CODCrafters was a smooth and efficient experience. Their team delivered a high-quality web application on time and within budget. Communication was excellent, and the final product exceeded our expectations. Will definitely work with them again!",
+    content: "Working with CODCrafters was a smooth and efficient experience. Their team delivered a high-quality web application on time and within budget. Communication was excellent, and the final product exceeded our expectations.",
     rating: 5,
     verified: "Google Verified",
     projectDuration: "5 months",
@@ -82,7 +81,7 @@ const testimonials = [
     position: "CTO",
     company: "Nordic Tech Solutions - Sweden 🇸🇪",
     location: "Stockholm, Sweden",
-    content: "Usman's technical excellence and deep understanding of modern software architecture are truly impressive. He delivered a complex MERN stack application that handles our real-time data processing needs flawlessly. The scalability and performance are outstanding. His ability to integrate cutting-edge AI features with traditional ERP systems showcases his versatility. A true professional!",
+    content: "Usman's technical excellence and deep understanding of modern software architecture are truly impressive. He delivered a complex MERN stack application that handles our real-time data processing needs flawlessly. The scalability and performance are outstanding.",
     rating: 5,
     verified: "Tech Enterprise Verified",
     projectDuration: "8 months",
@@ -94,7 +93,7 @@ const testimonials = [
     position: "VP of Engineering",
     company: "American Software Solutions - USA 🇺🇸",
     location: "San Francisco, USA",
-    content: "Working with Usman has been exceptional! His expertise in full-stack development, combined with his knowledge of AI and machine learning, made him the perfect fit for our ambitious project. He built a sophisticated analytics platform that integrates seamlessly with our existing systems. Communication was clear, delivery was on time, and the quality exceeded expectations. Highly recommended!",
+    content: "Working with Usman has been exceptional! His expertise in full-stack development, combined with his knowledge of AI and machine learning, made him the perfect fit. He built a sophisticated analytics platform that integrates seamlessly with our existing systems.",
     rating: 5,
     verified: "Enterprise Verified",
     projectDuration: "7 months",
@@ -102,12 +101,12 @@ const testimonials = [
   },
 ];
 
-const satisfactionMetrics = [
-  { label: "Overall Satisfaction", value: 5, suffix: ".0/5" },
-  { label: "Project Success", value: 98, suffix: "%" },
-  { label: "Happy Clients", value: 65, suffix: "+" },
-  { label: "On Time Delivery", value: 95, suffix: "%" },
-];
+const satisfactionMetrics = {
+  overallSatisfaction: "5.0/5",
+  projectSuccess: "98%",
+  happyClients: "65+",
+  onTimeDelivery: "95%",
+};
 
 const getVerificationIcon = (verified: string) => {
   if (verified.includes("Google")) return <CheckCircle className="w-3.5 h-3.5 text-blue-400" />;
@@ -132,30 +131,30 @@ const TestimonialsSection = () => {
   }, [isAutoPlaying]);
 
   return (
-    <section id="testimonials" className="py-28 relative" ref={ref}>
+    <section id="testimonials" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-primary font-mono text-sm mb-3 tracking-widest uppercase">Testimonials</p>
           <h2 className="section-heading">
             What Clients <span className="gradient-text">Say</span>
           </h2>
-          <div className="section-divider" />
+          <p className="text-xs text-muted-foreground mt-3 max-w-lg mx-auto">
+            Names and details are anonymized to protect confidentiality while maintaining authentic feedback.
+          </p>
         </motion.div>
 
         {/* Satisfaction stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-16">
-          {satisfactionMetrics.map((m) => (
-            <motion.div key={m.label} whileHover={{ scale: 1.05 }} className="glass-card-premium p-5 text-center cursor-default">
-              <p className="text-2xl font-bold gradient-text font-display">
-                <AnimatedCounter end={m.value} suffix={m.suffix} />
-              </p>
-              <p className="text-xs text-muted-foreground mt-1">{m.label}</p>
-            </motion.div>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-3xl mx-auto mb-12">
+          {Object.entries(satisfactionMetrics).map(([key, value]) => (
+            <div key={key} className="glass-card p-4 text-center">
+              <p className="text-2xl font-bold gradient-text font-display">{value}</p>
+              <p className="text-xs text-muted-foreground mt-1 capitalize">{key.replace(/([A-Z])/g, " $1").trim()}</p>
+            </div>
           ))}
         </div>
 
@@ -166,49 +165,47 @@ const TestimonialsSection = () => {
           onMouseLeave={() => setIsAutoPlaying(true)}
         >
           <div className="overflow-hidden rounded-2xl">
-            <motion.div
-              className="flex"
-              animate={{ x: `-${current * 100}%` }}
-              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+            <div
+              className="flex transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {testimonials.map((t) => (
                 <div key={t.id} className="w-full flex-shrink-0 px-2">
-                  <div className="glass-card-premium p-10 border-t-2 border-primary/30">
-                    <div className="flex items-start justify-between mb-8">
-                      <div className="flex items-center gap-5">
-                        <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-bold text-gradient-animate font-display"
-                          style={{ background: "linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--accent)/0.1))" }}>
+                  <div className="glass-card p-8 border-t-2 border-primary/30">
+                    <div className="flex items-start justify-between mb-6">
+                      <div className="flex items-center gap-4">
+                        <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center text-xl font-bold gradient-text">
                           {t.name.charAt(0)}
                         </div>
                         <div>
-                          <h4 className="font-display font-bold text-foreground text-lg">{t.name}</h4>
-                          <p className="text-sm text-primary font-medium">{t.position}</p>
-                          <p className="text-xs text-muted-foreground flex items-center gap-1 mt-0.5">
+                          <h4 className="font-display font-bold text-foreground">{t.name}</h4>
+                          <p className="text-sm text-primary">{t.position}</p>
+                          <p className="text-xs text-muted-foreground flex items-center gap-1">
                             <MapPin size={10} /> {t.company}
                           </p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary/80 text-xs">
+                      <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-secondary text-xs">
                         {getVerificationIcon(t.verified)}
                         <span className="text-muted-foreground">{t.verified}</span>
                       </div>
                     </div>
 
-                    <div className="flex mb-5">
+                    <div className="flex mb-4">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className={`w-5 h-5 ${i < t.rating ? "text-yellow-400 fill-current" : "text-border"}`} />
+                        <Star key={i} className={`w-4 h-4 ${i < t.rating ? "text-yellow-400 fill-current" : "text-border"}`} />
                       ))}
                     </div>
 
-                    <div className="relative mb-8">
-                      <Quote size={32} className="absolute -top-3 -left-2 text-primary/10" />
-                      <blockquote className="text-muted-foreground leading-relaxed pl-8 text-base italic">
+                    <div className="relative mb-6">
+                      <Quote size={24} className="absolute -top-2 -left-1 text-primary/20" />
+                      <blockquote className="text-muted-foreground leading-relaxed pl-6 italic">
                         "{t.content}"
                       </blockquote>
                     </div>
 
-                    <div className="flex items-center justify-between pt-5 border-t border-border/30">
-                      <div className="flex gap-8">
+                    <div className="flex items-center justify-between pt-4 border-t border-border/50">
+                      <div className="flex gap-6">
                         {Object.entries(t.metrics).map(([key, value]) => (
                           <div key={key} className="text-center">
                             <p className="text-sm font-bold text-primary">{value}</p>
@@ -218,38 +215,36 @@ const TestimonialsSection = () => {
                       </div>
                       <div className="text-right">
                         <p className="text-[10px] text-muted-foreground">Duration</p>
-                        <p className="text-xs font-bold text-foreground">{t.projectDuration}</p>
+                        <p className="text-xs font-medium text-foreground">{t.projectDuration}</p>
                       </div>
                     </div>
                   </div>
                 </div>
               ))}
-            </motion.div>
+            </div>
           </div>
 
           <button
             onClick={() => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)}
-            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 glass-card-premium p-3 hover:border-primary/30 transition-all"
+            className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 glass-card p-2.5 hover:border-primary/30 transition-all"
           >
-            <ChevronLeft size={20} className="text-muted-foreground" />
+            <ChevronLeft size={18} className="text-muted-foreground" />
           </button>
           <button
             onClick={() => setCurrent((prev) => (prev + 1) % testimonials.length)}
-            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 glass-card-premium p-3 hover:border-primary/30 transition-all"
+            className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 glass-card p-2.5 hover:border-primary/30 transition-all"
           >
-            <ChevronRight size={20} className="text-muted-foreground" />
+            <ChevronRight size={18} className="text-muted-foreground" />
           </button>
         </div>
 
         {/* Dots */}
-        <div className="flex justify-center gap-2 mt-8">
+        <div className="flex justify-center gap-2 mt-6">
           {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
-              className={`h-2.5 rounded-full transition-all duration-500 ${
-                i === current ? "bg-primary w-8" : "bg-border w-2.5 hover:bg-primary/50"
-              }`}
+              className={`w-2.5 h-2.5 rounded-full transition-all ${i === current ? "bg-primary scale-110" : "bg-border hover:bg-primary/50"}`}
             />
           ))}
         </div>

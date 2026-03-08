@@ -2,10 +2,10 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   Code2, Server, Smartphone, ShoppingCart, Globe, Brain,
-  FileText, Calculator, Shield, Receipt, Building, TrendingUp,
-  BarChart3, Cloud, Plug, Palette, Users, Zap
+  Link2, Shield, Coins, Image, Bot, Layers, Database,
+  Cloud, Plug, Palette, BarChart3, Calculator, FileText,
+  Receipt, Building, TrendingUp, Users, Zap
 } from "lucide-react";
-import AnimatedCounter from "./AnimatedCounter";
 
 const services = [
   {
@@ -42,10 +42,10 @@ const services = [
 ];
 
 const stats = [
-  { icon: Users, value: 65, suffix: "+", label: "Happy Clients" },
-  { icon: Zap, value: 175, suffix: "+", label: "Projects Delivered" },
-  { icon: Globe, value: 20, suffix: "+", label: "Countries Served" },
-  { icon: TrendingUp, value: 5, suffix: "/5", label: "Client Satisfaction" },
+  { icon: Users, value: "65+", label: "Happy Clients" },
+  { icon: Zap, value: "175+", label: "Projects Delivered" },
+  { icon: Globe, value: "20+", label: "Countries Served" },
+  { icon: TrendingUp, value: "5/5", label: "Client Satisfaction" },
 ];
 
 const ServicesSection = () => {
@@ -53,63 +53,59 @@ const ServicesSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-28 relative" ref={ref}>
+    <section id="services" className="py-24 relative" ref={ref}>
       <div className="container mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
           <p className="text-primary font-mono text-sm mb-3 tracking-widest uppercase">Services</p>
           <h2 className="section-heading">
             Professional <span className="gradient-text">Services</span>
           </h2>
-          <div className="section-divider" />
           <p className="section-subheading mx-auto mt-4">
             Comprehensive development and blockchain services to help your business grow
           </p>
         </motion.div>
 
         {/* Stats Row */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16">
           {stats.map((stat) => (
-            <motion.div key={stat.label} whileHover={{ scale: 1.05, y: -4 }} className="glass-card-premium p-6 text-center cursor-default">
-              <stat.icon className="w-7 h-7 text-primary mx-auto mb-3" />
-              <div className="text-2xl font-bold gradient-text font-display">
-                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-              </div>
-              <div className="text-xs text-muted-foreground mt-1">{stat.label}</div>
-            </motion.div>
+            <div key={stat.label} className="glass-card p-5 text-center">
+              <stat.icon className="w-7 h-7 text-primary mx-auto mb-2" />
+              <div className="text-2xl font-bold gradient-text font-display">{stat.value}</div>
+              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            </div>
           ))}
         </div>
 
         {services.map((category, ci) => (
-          <div key={category.category} className="mb-20">
+          <div key={category.category} className="mb-16">
             <motion.h3
               initial={{ opacity: 0, x: -20 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
               transition={{ delay: ci * 0.15 }}
-              className="text-2xl font-display font-bold mb-10 flex items-center gap-3"
+              className="text-xl font-display font-bold mb-8 flex items-center gap-3"
             >
-              <span className="w-10 h-1 rounded-full" style={{ background: "linear-gradient(90deg, hsl(var(--primary)), hsl(var(--accent)))" }} />
+              <span className="w-8 h-0.5 bg-primary rounded-full" />
               {category.category}
             </motion.h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
               {category.items.map((service, i) => (
                 <motion.div
                   key={service.title}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ delay: ci * 0.15 + i * 0.06 }}
-                  whileHover={{ y: -8 }}
-                  className="glass-card-premium p-7 group"
+                  className="glass-card-hover p-6 group"
                 >
-                  <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center mb-5 group-hover:bg-primary/20 group-hover:shadow-[0_0_25px_hsl(var(--primary)/0.15)] transition-all duration-500">
-                    <service.icon size={22} className="text-primary" />
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+                    <service.icon size={20} className="text-primary" />
                   </div>
-                  <h4 className="text-lg font-display font-bold mb-3 text-foreground">{service.title}</h4>
-                  <p className="text-sm text-muted-foreground mb-5 leading-relaxed">{service.desc}</p>
+                  <h4 className="text-lg font-display font-semibold mb-2 text-foreground">{service.title}</h4>
+                  <p className="text-sm text-muted-foreground mb-4 leading-relaxed">{service.desc}</p>
                   <div className="flex flex-wrap gap-1.5">
                     {service.tags.map((tag) => (
                       <span key={tag} className="skill-badge text-[10px]">{tag}</span>
@@ -122,20 +118,15 @@ const ServicesSection = () => {
         ))}
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.5 }}
-          className="text-center glass-card-premium p-10"
-        >
-          <h3 className="text-2xl font-display font-bold mb-4">Ready to Get Started?</h3>
-          <p className="text-sm text-muted-foreground mb-8 max-w-xl mx-auto">
+        <div className="text-center glass-card p-8" style={{ background: "linear-gradient(135deg, hsl(var(--primary) / 0.05), hsl(var(--accent) / 0.05))" }}>
+          <h3 className="text-xl font-display font-bold mb-3">Ready to Get Started?</h3>
+          <p className="text-sm text-muted-foreground mb-6 max-w-xl mx-auto">
             Let's discuss your project requirements and find the perfect solution for your business needs.
           </p>
-          <a href="#contact" className="inline-flex items-center gap-2 px-10 py-4 rounded-full bg-primary text-primary-foreground font-bold text-sm hover:shadow-[0_0_40px_hsl(var(--primary)/0.3)] transition-all duration-500">
+          <a href="#contact" className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-primary-foreground font-semibold text-sm hover:opacity-90 transition-opacity">
             Get Free Consultation <Users size={16} />
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
