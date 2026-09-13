@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>usman-ghias-portfolio - Usman Ghias</title>
+  <meta name="description" content="Personal portfolio and profile showcase for UsmanGhias.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #090d16;
+      --bg-card: #111827;
+      --bg-card-hover: #1f2937;
+      --border-subtle: #1e293b;
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --code-bg: #030712;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      line-height: 1.65;
+      font-size: 16px;
+      padding-bottom: 60px;
+    }
+    header.site-header {
+      background: rgba(17, 24, 39, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-subtle);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .header-inner {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .header-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .header-logo span {
+      color: var(--accent);
+    }
+    .header-links {
+      display: flex;
+      gap: 16px;
+    }
+    .header-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    .header-links a:hover {
+      color: var(--text-main);
+    }
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 36px 24px;
+    }
+    .hero {
+      border-bottom: 1px solid var(--border-subtle);
+      padding-bottom: 32px;
+      margin-bottom: 36px;
+    }
+    .meta-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #94a3b8;
+      font-size: 0.78rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 6px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .badge.lang {
+      color: var(--accent);
+      border-color: rgba(56, 189, 248, 0.3);
+      background: rgba(56, 189, 248, 0.08);
+    }
+    .badge.type {
+      color: #a78bfa;
+      border-color: rgba(167, 139, 250, 0.3);
+      background: rgba(167, 139, 250, 0.08);
+    }
+    h1.project-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-bottom: 12px;
+    }
+    p.project-desc {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 780px;
+      margin-bottom: 24px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.15s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #090d16;
+    }
+    .btn-primary:hover {
+      background: #7dd3fc;
+    }
+    .btn-secondary {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      background: var(--bg-card-hover);
+      border-color: #334155;
+    }
+    .content-area {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 36px 40px;
+    }
+    .content-area h1, .content-area h2, .content-area h3, .content-area h4 {
+      color: #ffffff;
+      margin-top: 1.8rem;
+      margin-bottom: 0.9rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+    .content-area h1 { font-size: 1.6rem; border-bottom: 1px solid var(--border-subtle); padding-bottom: 8px; }
+    .content-area h2 { font-size: 1.35rem; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 6px; }
+    .content-area h3 { font-size: 1.15rem; }
+    .content-area p {
+      margin-bottom: 1.1rem;
+      color: #d1d5db;
+    }
+    .content-area ul, .content-area ol {
+      margin-bottom: 1.2rem;
+      padding-left: 24px;
+      color: #d1d5db;
+    }
+    .content-area li {
+      margin-bottom: 6px;
+    }
+    .content-area pre {
+      background: var(--code-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      margin-bottom: 1.4rem;
+    }
+    .content-area code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9em;
+      background: rgba(255, 255, 255, 0.07);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: #7dd3fc;
+    }
+    .content-area pre code {
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      color: #e5e7eb;
+    }
+    .content-area blockquote {
+      border-left: 3px solid var(--accent);
+      padding-left: 16px;
+      margin: 1.2rem 0;
+      color: #9ca3af;
+      font-style: italic;
+    }
+    .content-area table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.4rem;
+    }
+    .content-area th, .content-area td {
+      padding: 10px 14px;
+      border: 1px solid var(--border-subtle);
+      text-align: left;
+    }
+    .content-area th {
+      background: #1f2937;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .content-area img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      border: 1px solid var(--border-subtle);
+      margin: 12px 0;
+    }
+    footer.site-footer {
+      margin-top: 60px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+    footer.site-footer a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+    footer.site-footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="https://usmanghias.github.io/Portfolio/" class="header-logo">Usman <span>Ghias</span></a>
+      <div class="header-links">
+        <a href="https://github.com/UsmanGhias/usman-ghias-portfolio" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://usmanghias.github.io/Portfolio/" target="_blank" rel="noopener">Portfolio</a>
+        <a href="https://codcrafters.org" target="_blank" rel="noopener">CODCrafters</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="meta-badges">
+        <span class="badge lang">TypeScript</span>
+        <span class="badge ">Open Source</span>
+        
+        <span class="badge">Branch: main</span>
+      </div>
+      <h1 class="project-title">usman-ghias-portfolio</h1>
+      <p class="project-desc">Personal portfolio and profile showcase for UsmanGhias.</p>
+      <div class="hero-actions">
+        <a href="https://github.com/UsmanGhias/usman-ghias-portfolio" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="https://github.com/UsmanGhias/usman-ghias-portfolio/issues" class="btn btn-secondary" target="_blank" rel="noopener">Issues & Feedback</a>
+      </div>
+    </section>
+
+    <article class="content-area">
+      <h1 id="welcome-to-your-lovable-project">Welcome to your Lovable project</h1>
+<h2 id="project-info">Project info</h2>
+<p><strong>URL</strong>: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID</p>
+<h2 id="how-can-i-edit-this-code">How can I edit this code?</h2>
+<p>There are several ways of editing your application.</p>
+<p><strong>Use Lovable</strong></p>
+<p>Simply visit the <a href="https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID">Lovable Project</a> and start prompting.</p>
+<p>Changes made via Lovable will be committed automatically to this repo.</p>
+<p><strong>Use your preferred IDE</strong></p>
+<p>If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.</p>
+<p>The only requirement is having Node.js &amp; npm installed - <a href="https://github.com/nvm-sh/nvm#installing-and-updating">install with nvm</a></p>
+<p>Follow these steps:</p>
+<pre><code class="language-sh"># Step 1: Clone the repository using the project's Git URL.
+git clone &lt;YOUR_GIT_URL&gt;
+
+# Step 2: Navigate to the project directory.
+cd &lt;YOUR_PROJECT_NAME&gt;
+
+# Step 3: Install the necessary dependencies.
+npm i
+
+# Step 4: Start the development server with auto-reloading and an instant preview.
+npm run dev
+</code></pre>
+<p><strong>Edit a file directly in GitHub</strong></p>
+<ul>
+<li>Navigate to the desired file(s).</li>
+<li>Click the "Edit" button (pencil icon) at the top right of the file view.</li>
+<li>Make your changes and commit the changes.</li>
+</ul>
+<p><strong>Use GitHub Codespaces</strong></p>
+<ul>
+<li>Navigate to the main page of your repository.</li>
+<li>Click on the "Code" button (green button) near the top right.</li>
+<li>Select the "Codespaces" tab.</li>
+<li>Click on "New codespace" to launch a new Codespace environment.</li>
+<li>Edit files directly within the Codespace and commit and push your changes once you're done.</li>
+</ul>
+<h2 id="what-technologies-are-used-for-this-project">What technologies are used for this project?</h2>
+<p>This project is built with:</p>
+<ul>
+<li>Vite</li>
+<li>TypeScript</li>
+<li>React</li>
+<li>shadcn-ui</li>
+<li>Tailwind CSS</li>
+</ul>
+<h2 id="how-can-i-deploy-this-project">How can I deploy this project?</h2>
+<p>Simply open <a href="https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID">Lovable</a> and click on Share -&gt; Publish.</p>
+<h2 id="can-i-connect-a-custom-domain-to-my-lovable-project">Can I connect a custom domain to my Lovable project?</h2>
+<p>Yes, you can!</p>
+<p>To connect a domain, navigate to Project &gt; Settings &gt; Domains and click Connect Domain.</p>
+<p>Read more here: <a href="https://docs.lovable.dev/features/custom-domain#custom-domain">Setting up a custom domain</a></p>
+    </article>
+
+    <footer class="site-footer">
+      <p>Project documentation maintained by <a href="https://github.com/UsmanGhias">Usman Ghias</a>, Founder & Lead Architect at <a href="https://codcrafters.org">CODCrafters</a>.</p>
+    </footer>
+  </main>
+</body>
+</html>
