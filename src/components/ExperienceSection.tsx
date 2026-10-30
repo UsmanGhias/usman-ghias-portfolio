@@ -113,7 +113,7 @@ const experiences = [
     period: "May 2024 - Present",
     location: "Remote",
     type: "Freelance",
-    desc: "Top Rated freelancer with 100% Job Success rate. Completed 20+ Odoo projects with 5-star ratings. Delivered projects 15% faster than industry average.",
+    desc: "Completed 20+ Odoo projects with 5-star ratings. Delivered projects 15% faster than industry average.",
     achievements: [
       "20+ Odoo projects with 5-star ratings",
       "100% client satisfaction rate",

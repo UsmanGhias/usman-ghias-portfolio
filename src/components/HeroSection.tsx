@@ -89,7 +89,7 @@ const HeroSection = () => {
             >
               <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: "hsl(142 76% 50%)" }} />
               <span className="text-sm text-muted-foreground">Available for projects</span>
-              <span className="skill-badge">Top Rated</span>
+              <span className="skill-badge">Odoo Architect</span>
             </motion.div>
 
             <motion.p
@@ -131,7 +131,7 @@ const HeroSection = () => {
               className="text-muted-foreground max-w-lg mb-8 leading-relaxed"
             >
               Elite Full Stack Developer & AI/Blockchain Expert with 5.5+ years of experience. 
-              Top Rated on Upwork with 100% Job Success. Founder of CODCrafters. 
+              Founder of CODCrafters. 
               Currently pursuing MSSE at Quantic School, Washington D.C.
             </motion.p>
 
@@ -230,7 +230,7 @@ const HeroSection = () => {
                 className="absolute -right-4 bottom-20 glass-card p-3 rounded-xl"
               >
                 <p className="text-xs text-muted-foreground">Upwork</p>
-                <p className="text-sm font-bold text-primary">Top Rated ⭐</p>
+                <p className="text-sm font-bold text-primary">Odoo Developer</p>
               </motion.div>
             </div>
           </motion.div>

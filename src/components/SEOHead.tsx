@@ -6,11 +6,11 @@ const SEOHead = () => {
     
     const meta = document.querySelector('meta[name="description"]');
     if (meta) {
-      meta.setAttribute("content", "Muhammad Usman Khan - Elite Full Stack Developer with 5.5+ years experience. Senior Odoo Expert, AI/Blockchain Developer, Top Rated on Upwork. 175+ projects delivered. Founder of CODCrafters.");
+      meta.setAttribute("content", "Muhammad Usman Khan - Elite Full Stack Developer with 5.5+ years experience. Senior Odoo Expert, AI/Blockchain Developer. 175+ projects delivered. Founder of CODCrafters.");
     } else {
       const newMeta = document.createElement("meta");
       newMeta.name = "description";
-      newMeta.content = "Muhammad Usman Khan - Elite Full Stack Developer with 5.5+ years experience. Senior Odoo Expert, AI/Blockchain Developer, Top Rated on Upwork. 175+ projects delivered. Founder of CODCrafters.";
+      newMeta.content = "Muhammad Usman Khan - Elite Full Stack Developer with 5.5+ years experience. Senior Odoo Expert, AI/Blockchain Developer. 175+ projects delivered. Founder of CODCrafters.";
       document.head.appendChild(newMeta);
     }
   }, []);

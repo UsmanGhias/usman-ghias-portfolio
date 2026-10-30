@@ -12,7 +12,7 @@ const ContactSection = () => {
     { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/musmanghias/", username: "@musmanghias" },
     { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/usmanghias467/", username: "@usmanghias467" },
     { icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@codcrafters", username: "@codcrafters" },
-    { icon: ExternalLink, label: "Upwork", href: "https://www.upwork.com/freelancers/usmanghias", username: "Top Rated" },
+    { icon: ExternalLink, label: "Upwork", href: "https://www.upwork.com/freelancers/usmanghias", username: "usmanghias" },
   ];
 
   return (

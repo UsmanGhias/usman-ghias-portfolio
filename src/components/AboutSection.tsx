@@ -11,7 +11,7 @@ const AboutSection = () => {
     { icon: GraduationCap, label: "MSSE @Quantic", sub: "Washington D.C., USA" },
     { icon: GraduationCap, label: "BS PUCIT", sub: "Software Engineering" },
     { icon: Building2, label: "CEO @CODCrafters", sub: "Tech Startup" },
-    { icon: Award, label: "Top Rated Upwork", sub: "100% Job Success" },
+    { icon: Award, label: "91+ Odoo Builds", sub: "185+ projects delivered" },
   ];
 
   const expertiseAreas = [
@@ -46,15 +46,15 @@ const AboutSection = () => {
               Hello! I'm <span className="gradient-text">Muhammad Usman Khan</span>
             </h3>
             <p className="text-muted-foreground leading-relaxed mb-4">
-              Top Rated Developer — Senior Full Stack Developer and Blockchain Expert with expertise in 
+              Senior Full Stack Developer and Blockchain Expert with expertise in 
               Odoo customization, Shopify development, WordPress solutions, AI/ML, and 3D designing. 
-              Currently pursuing MSSE at Quantic School based in Washington, D.C.
+              Holds an MSSE from Quantic School based in Washington, D.C.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-4">
               I've successfully delivered 175+ projects including comprehensive ERP solutions, 
               e-commerce platforms, and blockchain applications. I specialize in Odoo ERP implementations, 
               Shopify theme development, WordPress customization, blockchain/crypto development, and 3D designing 
-              using modern technologies. 100% Job Success rate on Upwork generating $100k+ annual revenue.
+              using modern technologies.
             </p>
             <p className="text-muted-foreground leading-relaxed mb-6 text-sm">
               <strong className="text-foreground">Title:</strong> Senior Odoo | MERN | Shopify | Flutter | DevOps | WordPress & Full Stack Developer | 
